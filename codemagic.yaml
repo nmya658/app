@@ -11,6 +11,8 @@ workflows:
       ios_signing:
         distribution_type: app_store
         bundle_identifier: $APP_ID
+        provisioning_profiles:
+          - BrightPath_AppStore_Profile  # Name of the provisioning profile you uploaded
     scripts:
       - name: Install CocoaPods
         script: |
