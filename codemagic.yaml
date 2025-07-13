@@ -3,7 +3,7 @@ workflows:
     name: iOS AppStore Build
     environment:
       groups:
-        - app  # contains CERTIFICATE_PASSWORD if needed
+        - app
       ios_signing:
         provisioning_profiles:
           - brightpath_cert
@@ -14,14 +14,29 @@ workflows:
         script: |
           flutter pub get
 
-      - name: Set up code signing settings on Xcode project
+      - name: Build iOS app via Xcode
+        script: |
+          flutter build ios --release --no-codesign
+
+      - name: Set up code signing settings
         script: |
           xcode-project use-profiles
 
-      - name: Build iOS release
+      - name: Archive iOS app
         script: |
-          flutter build ios --release
+          xcodebuild -workspace ios/Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Release \
+            -archivePath $HOME/output/Runner.xcarchive \
+            archive
+
+      - name: Export IPA
+        script: |
+          xcodebuild -exportArchive \
+            -archivePath $HOME/output/Runner.xcarchive \
+            -exportOptionsPlist ios/ExportOptions.plist \
+            -exportPath $HOME/output
 
     artifacts:
-      - build/ios/ipa/*.ipa
-      - build/ios/ipa/*.dSYM.zip
+      - $HOME/output/*.ipa
+      - $HOME/output/*.dSYM.zip
