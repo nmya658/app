@@ -4,20 +4,18 @@ workflows:
     environment:
       groups:
         - app  # contains CERTIFICATE_PASSWORD if needed
-      vars:
-        APP_ID: "com.nejalagha.brightpath"
       ios_signing:
         provisioning_profiles:
-          - brightpath_cert  # just the name of the uploaded profile
+          - brightpath_cert  # name matches your uploaded .mobileprovision
+        certificates:
+          - brightpath_cert  # name matches your uploaded .p12 certificate
     scripts:
       - name: Get Flutter dependencies
         script: |
           flutter pub get
-
       - name: Build iOS release
         script: |
           flutter build ios --release
-
     artifacts:
       - build/ios/ipa/*.ipa
       - build/ios/ipa/*.dSYM.zip
