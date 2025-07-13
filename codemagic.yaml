@@ -4,11 +4,11 @@ workflows:
     environment:
       groups:
         - app  # contains CERTIFICATE_PASSWORD if needed
-    signing:
-      ios:
-        provisioning_profiles:
-          - profile: brightpath_cert  # ← matches exactly what you uploaded
-            bundle_id: com.nejalagha.brightpath
+      vars:
+        APP_ID: "com.nejalagha.brightpath"
+    code_signing:
+      provisioning_profiles:
+        - brightpath_cert  # name of the uploaded .mobileprovision profile
     scripts:
       - name: Get Flutter dependencies
         script: |
