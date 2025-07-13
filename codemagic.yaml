@@ -3,7 +3,7 @@ workflows:
     name: iOS AppStore Build
     environment:
       groups:
-        - app  # your secret group
+        - app  # contains Encrypted_ISSUER_ID, KEY_ID, PRIVATE_KEY
       vars:
         APP_ID: "com.nejalagha.brightpath"
         XCODE_WORKSPACE: "Runner.xcworkspace"
@@ -11,8 +11,6 @@ workflows:
       ios_signing:
         distribution_type: app_store
         bundle_identifier: $APP_ID
-        provisioning_profiles:
-          - BrightPath_AppStore_Profile  # Name of the provisioning profile you uploaded
     scripts:
       - name: Install CocoaPods
         script: |
