@@ -8,8 +8,7 @@ workflows:
         APP_ID: "com.nejalagha.brightpath"
       ios_signing:
         provisioning_profiles:
-          - profile: brightpath_cert
-            bundle_id: com.nejalagha.brightpath
+          - brightpath_cert  # just the name of the uploaded profile
     scripts:
       - name: Get Flutter dependencies
         script: |
