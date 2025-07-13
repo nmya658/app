@@ -15,7 +15,9 @@ workflows:
       - name: Install CocoaPods
         script: |
           cd ios
-          pod install
+          rm -f Podfile.lock
+          pod repo update
+          pod install --verbose
       - name: Build iOS Archive
         script: |
           xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" -sdk iphoneos -configuration Release -archivePath $HOME/output/$XCODE_SCHEME.xcarchive archive
