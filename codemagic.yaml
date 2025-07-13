@@ -1,26 +1,29 @@
 workflows:
-  build-ios:
-    name: Build iOS IPA
-    max_build_duration: 60
+  ios-secure:
+    name: iOS AppStore Build
     environment:
-      flutter: stable
-      xcode: latest
-      cocoapods: default
-    triggering:
-      events:
-        - push
-      branch_patterns:
-        - pattern: 'main'
-          include: true
+      vars:
+        APP_ID: "com.nejalagha.brightpath"
+        XCODE_WORKSPACE: "Runner.xcworkspace"
+        XCODE_SCHEME: "Runner"
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: $APP_ID
+        auth:
+          app_store_connect_issuer_id: Encrypted_ISSUER_ID
+          app_store_connect_key_identifier: Encrypted_KEY_ID
+          app_store_connect_private_key: Encrypted_PRIVATE_KEY
     scripts:
-      - name: Install dependencies
-        script: flutter pub get
-      - name: Build IPA
-        script: flutter build ios --release --no-codesign
+      - name: Install CocoaPods
+        script: |
+          cd ios
+          pod install
+      - name: Build iOS Archive
+        script: |
+          xcodebuild -workspace "$XCODE_WORKSPACE" -scheme "$XCODE_SCHEME" -sdk iphoneos -configuration Release -archivePath $HOME/output/$XCODE_SCHEME.xcarchive archive
+      - name: Export IPA
+        script: |
+          xcodebuild -exportArchive -archivePath $HOME/output/$XCODE_SCHEME.xcarchive -exportPath $HOME/output -exportOptionsPlist ExportOptions.plist
     artifacts:
-      - build/ios/iphoneos/Runner.app
-      - build/ios/ipa/*.ipa
-    publishing:
-      email:
-        recipients:
-          - your-email@example.com
+      - $HOME/output/*.ipa
+      - $HOME/output/*.dSYM.zip
