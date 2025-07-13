@@ -6,9 +6,10 @@ workflows:
         - app  # contains CERTIFICATE_PASSWORD if needed
       vars:
         APP_ID: "com.nejalagha.brightpath"
-    code_signing:
-      provisioning_profiles:
-        - brightpath_cert  # name of the uploaded .mobileprovision profile
+      ios_signing:
+        provisioning_profiles:
+          - profile: brightpath_cert
+            bundle_id: com.nejalagha.brightpath
     scripts:
       - name: Get Flutter dependencies
         script: |
