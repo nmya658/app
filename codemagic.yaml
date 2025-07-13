@@ -2,6 +2,8 @@ workflows:
   ios-secure:
     name: iOS AppStore Build
     environment:
+      groups:
+        - app  # Make sure this group contains: Encrypted_ISSUER_ID, Encrypted_KEY_ID, Encrypted_PRIVATE_KEY
       vars:
         APP_ID: "com.nejalagha.brightpath"
         XCODE_WORKSPACE: "Runner.xcworkspace"
@@ -10,9 +12,9 @@ workflows:
         distribution_type: app_store
         bundle_identifier: $APP_ID
         auth:
-          app_store_connect_issuer_id: Encrypted_ISSUER_ID
-          app_store_connect_key_identifier: Encrypted_KEY_ID
-          app_store_connect_private_key: Encrypted_PRIVATE_KEY
+          app_store_connect_issuer_id: $Encrypted_ISSUER_ID
+          app_store_connect_key_identifier: $Encrypted_KEY_ID
+          app_store_connect_private_key: $Encrypted_PRIVATE_KEY
     scripts:
       - name: Install CocoaPods
         script: |
