@@ -6,16 +6,13 @@ workflows:
         - app  # contains Encrypted_ISSUER_ID, KEY_ID, PRIVATE_KEY
       vars:
         APP_ID: "com.nejalagha.brightpath"
-    ios_signing:
-      distribution_type: app_store
-      bundle_identifier: $APP_ID
     scripts:
       - name: Get Flutter dependencies
         script: |
           flutter pub get
       - name: Build iOS release
         script: |
-          flutter build ios --release
+          flutter build ios --release --no-codesign
     artifacts:
       - build/ios/ipa/*.ipa
       - build/ios/ipa/*.dSYM.zip
