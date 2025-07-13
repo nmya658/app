@@ -3,9 +3,12 @@ workflows:
     name: iOS AppStore Build
     environment:
       groups:
-        - app  # contains Encrypted_ISSUER_ID, KEY_ID, PRIVATE_KEY
-      vars:
-        APP_ID: "com.nejalagha.brightpath"
+        - app  # contains CERTIFICATE_PASSWORD if needed
+    signing:
+      ios:
+        provisioning_profiles:
+          - profile: brightpath_cert  # ← matches exactly what you uploaded
+            bundle_id: com.nejalagha.brightpath
     scripts:
       - name: Get Flutter dependencies
         script: |
@@ -14,10 +17,6 @@ workflows:
       - name: Build iOS release
         script: |
           flutter build ios --release
-
-      - name: Export IPA
-        script: |
-          flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
 
     artifacts:
       - build/ios/ipa/*.ipa
