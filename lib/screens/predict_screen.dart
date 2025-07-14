@@ -386,7 +386,7 @@ class _PredictScreenState extends State<PredictScreen> {
     }
   }
 
-  Future<void> uploadScanpathFile() async {
+  /*Future<void> uploadScanpathFile() async {
     final XFile? file = await openFile(
       acceptedTypeGroups: [XTypeGroup(label: 'Text', extensions: ['txt'])],
     );
@@ -465,7 +465,7 @@ class _PredictScreenState extends State<PredictScreen> {
         prediction = "Error: ${response.statusCode}";
       });
     }
-  } 
+  } */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
