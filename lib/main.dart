@@ -7,6 +7,7 @@ import 'screens/result_screen.dart';
 import 'screens/state/screens_controller.dart';
 import 'screens/home_layout.dart';
 void main() {
+  WidgetsFlutterBinding.ensureInitialized(); // 🔧 Required for platform plugins
   runApp(AutismInsightApp());
 }
 
