@@ -184,10 +184,10 @@ class _HomeLayoutState extends State<HomeLayout> {
             child: IndexedStack(
               index: _currentIndex,
               children: [
-                HomeContent(userIdController: userIdController),
-                PredictScreen(userIdController: userIdController),
-                const Center(child: Text("Advice Page")),
-                const Center(child: Text("Activity Page")),
+                const Center(child: Text("Home")),
+                const Center(child: Text("Predict")),
+                const Center(child: Text("Advice")),
+                const Center(child: Text("Activity")),
               ],
             ),
           ),
