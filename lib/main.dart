@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' hide CarouselController;
+/*import 'package:flutter/material.dart' hide CarouselController;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'screens/ehs_redirect_screen.dart';
 import 'screens/form_screen.dart';
@@ -35,5 +35,30 @@ class AutismInsightApp extends StatelessWidget {
       ),
     );
   }
+}*/
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const TestApp());
 }
+
+class TestApp extends StatelessWidget {
+  const TestApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text(
+            '🧪 Test Screen Only',
+            style: TextStyle(fontSize: 24),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
