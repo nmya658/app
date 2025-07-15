@@ -45,5 +45,20 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+	  <string>http</string>
+	  <string>https</string>
+	</array>
+	
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to your photo library.</string>
+	
+	<key>NSDocumentsFolderUsageDescription</key>
+	<string>This app needs access to your documents folder.</string>
+	
+	<key>NSFileProviderDomainUsageDescription</key>
+	<string>This app uses files from your device to analyze scanpath data.</string>
+
 </dict>
 </plist>
