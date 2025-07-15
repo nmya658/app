@@ -322,7 +322,7 @@ class _PredictScreenState extends State<PredictScreen> {
 */
 
 import 'dart:convert';
-/*import 'package:file_selector/file_selector.dart';*/
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
@@ -386,7 +386,7 @@ class _PredictScreenState extends State<PredictScreen> {
     }
   }
 
-  /*Future<void> uploadScanpathFile() async {
+  Future<void> uploadScanpathFile() async {
     final XFile? file = await openFile(
       acceptedTypeGroups: [XTypeGroup(label: 'Text', extensions: ['txt'])],
     );
@@ -465,7 +465,7 @@ class _PredictScreenState extends State<PredictScreen> {
         prediction = "Error: ${response.statusCode}";
       });
     }
-  } */
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
