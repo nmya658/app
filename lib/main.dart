@@ -40,6 +40,7 @@ class AutismInsightApp extends StatelessWidget {
 import 'package:flutter/material.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized(); // ✅ critical
   runApp(const TestApp());
 }
 
